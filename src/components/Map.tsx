@@ -20,7 +20,7 @@ const Map = memo(() => {
       />
       <Marker position={position}>
         <Popup>
-          UniqHR. <br /> Coimbatore.
+          Uniq HR. <br /> Coimbatore.
         </Popup>
       </Marker>
     </MapContainer>

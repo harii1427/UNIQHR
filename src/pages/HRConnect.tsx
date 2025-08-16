@@ -70,8 +70,8 @@ const HRConnect = () => {
   };
 
   const handleContactCandidate = (candidate: Candidate) => {
-    const subject = `Opportunity at UniqHR - ${candidate.firstName} ${candidate.lastName}`;
-    const body = `Hi ${candidate.firstName},\n\nI hope this message finds you well. I came across your profile through UniqHR and was impressed by your background in ${candidate.skills}.\n\nI would love to discuss some exciting opportunities that might align with your career goals.\n\nBest regards,\nHR Team`;
+    const subject = `Opportunity at Uniq HR - ${candidate.firstName} ${candidate.lastName}`;
+    const body = `Hi ${candidate.firstName},\n\nI hope this message finds you well. I came across your profile through Uniq HR and was impressed by your background in ${candidate.skills}.\n\nI would love to discuss some exciting opportunities that might align with your career goals.\n\nBest regards,\nHR Team`;
     
     window.location.href = `mailto:${candidate.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };

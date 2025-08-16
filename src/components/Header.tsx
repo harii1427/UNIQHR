@@ -42,9 +42,8 @@ const Header = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
-    { name: 'Job Seeker Portal', path: '/job-seeker' },
-    // { name: 'HR Connect', path: '/hr-connect' },
-    { name: 'Blog', path: '/blog' },
+    // { name: 'Job Seeker Portal', path: '/job-seeker' },
+    { name: 'News', path: '/blog' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -83,7 +82,7 @@ const Header = () => {
               <Link to="/" className="flex items-center">
                 <img
                   src={Logo}
-                  alt="UniqHR Logo"
+                  alt="Uniq HR Logo"
                   className="h-12 object-contain"
                 />
               </Link>

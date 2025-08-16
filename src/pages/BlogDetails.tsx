@@ -21,13 +21,39 @@ const BlogDetails = () => {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const convertHtmlTextToUppercase = (html: string): string => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    const walkNodes = (node: Node) => {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent) {
+        node.textContent = node.textContent.toUpperCase();
+      } else {
+        node.childNodes.forEach(walkNodes);
+      }
+    };
+
+    walkNodes(doc.body);
+    return doc.body.innerHTML;
+  };
+
   useEffect(() => {
     if (id) {
       const postRef = ref(database, `blogs/posts/${id}`);
       onValue(postRef, (snapshot) => {
         const data = snapshot.val();
         if (data) {
-          setPost(data);
+          // Capitalize string fields
+          const uppercasedPost = {
+            ...data,
+            title: data.title.toUpperCase(),
+            excerpt: data.excerpt.toUpperCase(),
+            content: convertHtmlTextToUppercase(data.content),
+            author: data.author.toUpperCase(),
+            readTime: data.readTime.toUpperCase(),
+            category: data.category.toUpperCase(),
+          };
+          setPost(uppercasedPost);
         }
         setLoading(false);
       });
@@ -49,7 +75,9 @@ const BlogDetails = () => {
           <img src={post.image} alt={post.title} className="w-full h-96 object-cover" />
           <div className="p-8">
             <div className="mb-4">
-              <span className="text-sm font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">{post.category}</span>
+              <span className="text-sm font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                {post.category}
+              </span>
             </div>
             <h1 className="text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
             <div className="flex items-center text-gray-500 text-sm mb-6">
@@ -67,7 +95,7 @@ const BlogDetails = () => {
               </div>
             </div>
             <p className="text-lg text-gray-600 mb-6">{post.excerpt}</p>
-            <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
+
           </div>
         </div>
       </div>

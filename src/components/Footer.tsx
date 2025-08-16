@@ -10,9 +10,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <span className="text-xl font-bold">UNIQHR</span>
+              <span className="text-xl font-bold">UNIQ HR</span>
             </div>
-            <p className="text-gray-300">
+            <p className="text-gray-300 uppercase">
               Connecting talent with opportunity through professional HR consulting services.
             </p>
             <div className="flex space-x-4">
@@ -29,21 +29,19 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 uppercase">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link></li>
-              <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors">About Us</Link></li>
-              <li><Link to="/job-seeker" className="text-gray-300 hover:text-white transition-colors">Job Seeker Portal</Link></li>
-              <li><Link to="/blog" className="text-gray-300 hover:text-white transition-colors">Blog</Link></li>
+              <li><Link to="/" className="text-gray-300 hover:text-white transition-colors uppercase">Home</Link></li>
+              <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors uppercase">About Us</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-<ul className="space-y-2 text-gray-300">
+            <h3 className="text-lg font-semibold mb-4 uppercase">Services</h3>
+<ul className="space-y-2 text-gray-300 uppercase">
   {["Executive Search", "Talent Acquisition", "HR Consulting", "Career Guidance"].map((item) => (
     <li key={item}>
-      <a href="/job-seeker" className="hover:underline">
+      <a href="/contact" className="hover:underline">
         {item}
       </a>
     </li>
@@ -53,17 +51,17 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+            <h3 className="text-lg font-semibold mb-4 uppercase">Contact Info</h3>
             <div className="space-y-3 text-gray-300">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
                 <span>+91 90250 94907</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 ">
                 <Mail className="h-4 w-4" />
                 <span>info@uniqhr.com</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 uppercase">
                 <MapPin className="h-4 w-4" />
                 <span>Coimbatore</span>
               </div>
@@ -71,12 +69,12 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-300">
-          <p>&copy; 2025 UNIQHR. All rights reserved.</p>
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-300 uppercase">
+          <p>&copy; 2025 UNIQ HR. All rights reserved.</p>
           <div className="flex justify-center items-center mt-4">
-            <p className="text-gray-300 mr-2">Powered by</p>
-            <a href="https://qwat.in/" target="_blank" rel="noopener noreferrer">
-              <img src="https://qwat.in/static/media/QWAT.67fc4ebe979fba1f87d9.png" alt="Qwat Logo" className="h-8" />
+            <p className="text-xs text-gray-400 mr-1">Powered by</p>
+            <a href="https://qwatinnovations.com/" target="_blank" rel="noopener noreferrer">
+              <img src="https://firebasestorage.googleapis.com/v0/b/qwat-9aaab.appspot.com/o/Qwat%20innovations%2FLogo-dark.svg?alt=media&token=3c95d22b-8feb-473c-917f-deda4ed417ef" alt="Qwat Logo" className="h-5" />
             </a>
           </div>
         </div>

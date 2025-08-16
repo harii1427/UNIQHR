@@ -139,13 +139,13 @@ const Home = () => {
             >
               {/* Adjusted font sizes for better scaling on mobile devices */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-                Connecting Talent with{' '}
+                CONNECTING TALENT WITH{' '}
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                  Opportunity
+                  OPPORTUNITY
                 </span>
               </h1>
               
-              <p className="text-base sm:text-lg mb-6 sm:mb-8 text-gray-700 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-base sm:text-lg mb-6 sm:mb-8 text-gray-700 leading-relaxed max-w-xl mx-auto lg:mx-0 uppercase">
                 Professional HR consultancy services that bridge the gap between exceptional talent and remarkable opportunities.
               </p>
               
@@ -250,17 +250,17 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Impact in Numbers</h2>
-            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">Trusted by professionals and companies worldwide</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">OUR IMPACT IN NUMBERS</h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">TRUSTED BY PROFESSIONALS AND COMPANIES WORLDWIDE</p>
           </motion.div>
 
           {/* This grid is well-optimized: 2 columns on mobile, 4 on medium screens and up */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {[
-              { icon: Users, end: 2500, label: 'Successful Placements' },
-              { icon: Building, end: 150, label: 'Partner Companies' },
-              { icon: Award, end: 98, label: 'Success Rate %' },
-              { icon: TrendingUp, end: 5, label: 'Years Experience' }
+              { icon: Users, end: 2500, label: 'SUCCESSFUL PLACEMENTS' },
+              { icon: Building, end: 150, label: 'PARTNER COMPANIES' },
+              { icon: Award, end: 98, label: 'SUCCESS RATE %' },
+              { icon: TrendingUp, end: 5, label: 'YEARS EXPERIENCE' }
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -283,47 +283,54 @@ const Home = () => {
 
       {/* Services Overview */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-center mb-12"
+    >
+      <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        WHAT WE OFFER
+      </h2>
+      <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+        COMPREHENSIVE HR SOLUTIONS FOR JOB SEEKERS AND EMPLOYERS
+      </p>
+    </motion.div>
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {loading ? (
+        <div className="col-span-3 flex justify-center items-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      ) : (
+        services.map((service, index) => (
           <motion.div
+            key={index}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">What We Offer</h2>
-            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Comprehensive HR solutions for job seekers and employers.
-            </p>
+            <div
+              className="h-40 sm:h-48 bg-cover bg-center"
+              style={{ backgroundImage: `url('${service.image}')` }}
+            ></div>
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {service.title.toUpperCase()}
+              </h3>
+              <p className="text-gray-600 text-base">
+                {service.description.toUpperCase()}
+              </p>
+            </div>
           </motion.div>
-          {/* This grid defaults to 1 column on mobile, which is perfect */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {loading ? (
-              <div className="col-span-3 flex justify-center items-center">
-                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
-              </div>
-            ) : (
-              services.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  {/* Adjusted image height for mobile */}
-                  <div className="h-40 sm:h-48 bg-cover bg-center" style={{ backgroundImage: `url('${service.image}')` }}></div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
-                    <p className="text-gray-600 text-base">{service.description}</p>
-                  </div>
-                </motion.div>
-              ))
-            )}
-          </div>
-        </div>
-      </section>
+        ))
+      )}
+    </div>
+  </div>
+</section>
 
       {/* CTA Section */}
       <section className="py-16 sm:py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
@@ -334,9 +341,9 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Take the Next Step?</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">READY TO TAKE THE NEXT STEP?</h2>
             <p className="text-lg mb-8 text-blue-100 max-w-3xl mx-auto">
-              Join thousands of professionals who have found their perfect career match with us.
+              JOIN THOUSANDS OF PROFESSIONALS WHO HAVE FOUND THEIR PERFECT CAREER MATCH WITH US.
             </p>
             {/* flex-col on mobile is great for stacking buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

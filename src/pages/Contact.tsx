@@ -5,17 +5,18 @@ import Banner from '../components/Banner';
 import Map from '../components/Map';
 
 const Contact = () => {
+  // MODIFIED: Updated formData state to match new fields
   const [formData, setFormData] = useState({
     name: '',
+    mobile: '',
+    location: '',
     email: '',
-    company: '',
-    subject: '',
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -37,10 +38,10 @@ const Contact = () => {
         setSubmitted(true);
         setTimeout(() => {
           setSubmitted(false);
-          setFormData({ name: '', email: '', company: '', subject: '', message: '' });
+          // MODIFIED: Reset the form with the new fields
+          setFormData({ name: '', mobile: '', location: '', email: '', message: '' });
         }, 3000);
       } else {
-        // Handle server errors or invalid responses
         alert('Failed to send message. Please try again later.');
       }
     } catch (error) {
@@ -54,11 +55,11 @@ const Contact = () => {
   return (
     <div className="pt-20">
       <br></br>
-      <Banner 
-        title="Get in Touch"
-        subtitle="Ready to find your next great hire or take the next step in your career? We're here to help."
-        imageUrl="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-      />
+<Banner
+  title="GET IN TOUCH"
+  subtitle="READY TO FIND YOUR NEXT GREAT HIRE OR TAKE THE NEXT STEP IN YOUR CAREER? WE'RE HERE TO HELP."
+  imageUrl="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+/>
 
       {/* Contact Section */}
       <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
@@ -71,7 +72,7 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="bg-white rounded-2xl shadow-xl p-8">
+              <div className="bg-white rounded-2xl shadow-xl p-8 uppercase">
                 <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Information</h2>
                 
                 <div className="space-y-6">
@@ -123,7 +124,6 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* WhatsApp Direct Contact */}
                 <div className="mt-8 pt-8 border-t border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Contact</h3>
                   <a
@@ -145,7 +145,7 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="bg-white rounded-2xl shadow-xl p-8">
+              <div className="bg-white rounded-2xl shadow-xl p-8 uppercase">
                 {submitted ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -164,11 +164,12 @@ const Contact = () => {
                   <>
                     <h2 className="text-3xl font-bold text-gray-900 mb-8">Send us a Message</h2>
                     
+                    {/* MODIFIED: Updated entire form structure */}
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid sm:grid-cols-2 gap-6">
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Full Name *
+                            Name *
                           </label>
                           <input
                             type="text"
@@ -183,7 +184,38 @@ const Contact = () => {
                         
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Email Address *
+                            Mobile Number *
+                          </label>
+                          <input
+                            type="tel"
+                            name="mobile"
+                            required
+                            value={formData.mobile}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="Your mobile number"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Location
+                          </label>
+                          <input
+                            type="text"
+                            name="location"
+                            value={formData.location}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder="Your city/state"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            E-mail Address *
                           </label>
                           <input
                             type="email"
@@ -199,46 +231,12 @@ const Contact = () => {
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Company/Organization
-                        </label>
-                        <input
-                          type="text"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="Your company name (optional)"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Subject *
-                        </label>
-                        <select
-                          name="subject"
-                          required
-                          value={formData.subject}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        >
-                          <option value="">Select a subject</option>
-                          <option value="job-seeker">Job Seeker Inquiry</option>
-                          <option value="employer">Employer Services</option>
-                          <option value="partnership">Partnership Opportunity</option>
-                          <option value="general">General Information</option>
-                          <option value="support">Support</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
                           Message *
                         </label>
                         <textarea
                           name="message"
                           required
-                          rows={6}
+                          rows={5}
                           value={formData.message}
                           onChange={handleInputChange}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
@@ -252,11 +250,11 @@ const Contact = () => {
                         className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                       >
                         {loading ? (
-                          'Sending...'
+                          'SENDING...'
                         ) : (
                           <>
                             <Send className="h-5 w-5 mr-2" />
-                            Send Message
+                            SEND MESSAGE
                           </>
                         )}
                       </button>
@@ -277,7 +275,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-12 uppercase"
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Visit Our Office</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
