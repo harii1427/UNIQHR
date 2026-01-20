@@ -70,7 +70,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-300 uppercase">
-          <p>&copy; 2025 UNIQ HR. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} UNIQ HR. All rights reserved.</p>
           <div className="flex justify-center items-center mt-4">
             <p className="text-xs text-gray-400 mr-1">Powered by</p>
             <a href="https://qwatinnovations.com/" target="_blank" rel="noopener noreferrer">
